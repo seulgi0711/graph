@@ -18,7 +18,8 @@ const schema = makeExecutableSchema({
             burgers: (_, {count}) => get(burgers, count)
         }
     }
-})
+});
+const persistedQueries = require('./persisted-queries');
 
 app.get('/salads', ({ query: { count } }, res) => 
     res.json(get(salads, count)));
@@ -26,6 +27,16 @@ app.get('/salads', ({ query: { count } }, res) =>
 app.get('/burgers', ({ query: { count } }, res) => 
     res.json(get(burgers, count)));
 
+app.use('/graphql', bodyParser.json(), (req, res, next) => {
+    if (req.method === 'GET' && persistedQueries[req.query.id]) {
+        req.query.query = persistedQueries[req.query.id];
+        delete req.query.id;
+    }
+    if (req.method === 'POST' && persistedQueries[req.body.id]) {
+        req.body.query = persistedQueries[req.body.id];
+    }
+    next();
+})
 app.use('/graphql', bodyParser.json(), graphqlExpress({schema}));
 app.use('/graphiql', graphiqlExpress({endpointURL: '/graphql'}));
 
