@@ -79,7 +79,28 @@ POST /graphql
 
 ## GraphQL Schema
 
+```
+type Burger {
+    buns: Int!
+    shrimp: Float!
+    lettuce: Boolean!
+}
 
+type Salad {
+    avocado: Float!
+    tomato: Float!
+    onion: Boolean!
+}
+
+type Query {
+    burgers(count: Int = 1): [Burger]
+    salads(count: Int = 1): [Salad]
+}
+```
+
+
+
+### 
 
 ## 내맘대로 메뉴의 문제점
 
