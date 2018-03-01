@@ -19,3 +19,12 @@ type Salad {
     tomato: Float!
     onion: Boolean!
 }
+
+type Subscription {
+  foodAdded: Stats
+}
+
+type Stats {
+  burgers: Int
+  salads: Int
+}
