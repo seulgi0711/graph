@@ -1,0 +1,16 @@
+type Query {
+    burgers(count: Int = 1): [Burger]
+    salads(count: Int = 1): [Salad]
+}
+
+type Burger {
+    buns: Int!
+    shrimp: Float!
+    lettuce: Boolean!
+}
+
+type Salad {
+    avocado: Float!
+    tomato: Float!
+    onion: Boolean!
+}
