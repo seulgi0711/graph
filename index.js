@@ -8,14 +8,24 @@ const app = express();
 const get = (what, count) => what.splice(0, parseInt(count) || 1);
 const salad = { avocado: 1, mango: 1, tomato: 0.2, arugula: true, onion: true };
 const burger = { buns: 2, shrimp: 1, egg: 1, lettuce: 2.5, mayo: true };
-const salads = new Array(100).fill(salad);
-const burgers = new Array(100).fill(burger);
+const salads = [];
+const burgers = [];
 const schema = makeExecutableSchema({
     typeDefs: readFileSync('schema.graphql', 'utf8'),
     resolvers: {
         Query: {
             salads: (_, {count}) => get(salads, count),
             burgers: (_, {count}) => get(burgers, count)
+        },
+        Mutation: {
+            addSalads: (_, {count}) => {
+                salads.push(...new Array(count).fill(salad));
+                return salads.length;
+            },
+            addBurgers: (_, {count}) => {
+                burgers.push(...new Array(count).fill(burger));
+                return burgers.length;
+            }
         }
     }
 });

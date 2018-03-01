@@ -77,6 +77,10 @@ POST /graphql
 
 
 
+## GraphQL Schema
+
+
+
 ## 내맘대로 메뉴의 문제점
 
 - 원하는대로 재료를 받기 위해서 각 요리의 재료를 모두 써야한다.
@@ -156,6 +160,23 @@ POST /graphql
 - 서버에 저장해서 클라이언트는 해당하는 아이디만으로 요청한다. -> 결과는 같지만 요청 payload의 크기가 줄어든다.
 - 서버에서 캐시를 이요할 때 Persisted Query를 활용할 수 있다.
 - 보안을 위해서 Persisted Query로 요청하지 않는 경우는 모두 무시할 수 있다.
+
+
+
+## 본사에서 보내준 요리 재고에 넣기
+
+- 아보카도 샐러드와 새우 버거를 본사에서 보내준다.
+- 보내준 요리를 채워 넣자.
+
+
+
+## Mutation
+
+
+
+
+
+You can send multiple mutations in a single request, another benefit over REST APIs. You cannot combine a mutation with a query, but you can define the mutation response if you want to.
 
 
 

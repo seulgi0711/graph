@@ -3,6 +3,11 @@ type Query {
     salads(count: Int = 1): [Salad]
 }
 
+type Mutation {
+    addBurgers(count: Int = 1): Int
+    addSalads(count: Int = 1): Int
+}
+
 type Burger {
     buns: Int!
     shrimp: Float!
